@@ -5,7 +5,7 @@
 
 import UIKit
 
-public protocol MaestroViewControllerProtocol: UIViewController {
+public protocol MaestroViewController: UIViewController {
 
     // MARK: - Constants
 
@@ -13,5 +13,6 @@ public protocol MaestroViewControllerProtocol: UIViewController {
 
     // MARK: - Properties
 
+    /// Returns the coordinator associated with this instance of `MaestroViewController`.
     var coordinator: Coordinator? { get set }
 }
