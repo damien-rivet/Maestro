@@ -19,14 +19,14 @@ open class MaestroCoordinator: MaestroCoordinatorProtocol {
 
     // MARK: - Initialization
 
-    public required init(window: UIWindow?, navigationController: UINavigationController? = UINavigationController()) {
+    public required init(window: UIWindow? = nil, navigationController: UINavigationController? = nil) {
         self.window = window
         self.navigationController = navigationController
     }
 
     // MARK: - Functions
 
-    public func orchestrate() {
+    open func orchestrate() {
         fatalError("Orchestration must not be started from abstract coordinator.")
     }
 }

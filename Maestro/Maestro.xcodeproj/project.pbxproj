@@ -222,6 +222,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.ethenyl.Maestro;
+				PRODUCT_MODULE_NAME = Maestro;
 				PRODUCT_NAME = Maestro;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -296,6 +297,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.ethenyl.Maestro;
+				PRODUCT_MODULE_NAME = Maestro;
 				PRODUCT_NAME = Maestro;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

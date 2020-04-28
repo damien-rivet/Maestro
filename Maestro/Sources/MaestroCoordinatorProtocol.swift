@@ -37,14 +37,14 @@ public protocol MaestroCoordinatorProtocol: class {
     func push<T: MaestroViewController>(viewController: T, animated: Bool)
 
     /// Present the supplied view controller above the current view controller through the navigation controller.
-    func present<T: MaestroViewController>(viewController: T, embedWithin nestedNavigationController: UINavigationController, animated: Bool, completion: (() -> Void)?)
+    func present<T: MaestroViewController>(viewController: T, embedWithin nestedNavigationController: UINavigationController?, animated: Bool, completion: (() -> Void)?)
 }
 
 // MARK: - ViewControllers navigation
 
 extension MaestroCoordinatorProtocol {
 
-    public func set<T: MaestroViewController>(viewController: T, embeddedNavigationController: UINavigationController?) {
+    public func set<T: MaestroViewController>(viewController: T, embeddedNavigationController: UINavigationController? = nil) {
         // Ensure coordinator is not lost between view controllers
         viewController.coordinator = self as? T.Coordinator
 
@@ -65,6 +65,10 @@ extension MaestroCoordinatorProtocol {
             navigationController.setViewControllers([viewController], animated: false)
             window.rootViewController = navigationController
 
+            if navigationController !== self.navigationController {
+                self.navigationController = navigationController
+            }
+
             NSLog("Setting \(viewController) as the root view controller of the navigation controller \(navigationController) within the window \(window)")
         }
     }
@@ -83,7 +87,33 @@ extension MaestroCoordinatorProtocol {
         NSLog("Pushing \(viewController) ontop of the stack of navigation controller \(navigationController)")
     }
 
-    public func present<T: MaestroViewController>(viewController: T, embedWithin nestedNavigationController: UINavigationController, animated: Bool = true, completion: (() -> Void)? = nil) {
+    public func present<T: MaestroViewController>(viewController: T, embedWithin nestedNavigationController: UINavigationController? = nil, animated: Bool = true, completion: (() -> Void)? = nil) {
+        guard let navigationController = self.navigationController else {
+            NSLog("Trying to present \(viewController) without a navigation controller")
+            return
+        }
+
+        // Ensure coordinator is not lost between view controllers
+        viewController.coordinator = self as? T.Coordinator
+
+        var viewControllerToPresent: UIViewController
+
+        // Should the presented view controller be nested within a navigation controller?
+        if let nestedNavigationController = nestedNavigationController {
+            // Set view controller as the root view controller of the navigation
+            nestedNavigationController.setViewControllers([viewController], animated: false)
+            viewControllerToPresent = nestedNavigationController
+        } else {
+            viewControllerToPresent = viewController
+        }
+
+        guard navigationController.presentedViewController == nil else {
+            NSLog("Trying to present \(viewController) over an already presented view controller")
+            return
+        }
+
+        navigationController.present(viewControllerToPresent, animated: animated, completion: completion)
+
         NSLog("Presenting \(viewController) ontop of the current view controller of navigation controller \(navigationController)")
     }
 }
