@@ -38,6 +38,9 @@ public protocol MaestroCoordinatorProtocol: class {
 
     /// Present the supplied view controller above the current view controller through the navigation controller.
     func present<T: MaestroViewController>(viewController: T, embedWithin nestedNavigationController: UINavigationController?, animated: Bool, completion: (() -> Void)?)
+
+    /// Navigate to another coordinator, either by reusing the same navigation controller or by using it's own.
+    func navigate<T: MaestroCoordinatorProtocol>(to coordinator: T)
 }
 
 // MARK: - ViewControllers navigation
@@ -73,9 +76,9 @@ extension MaestroCoordinatorProtocol {
         }
     }
 
-    public func push<T: MaestroViewController>(viewController: T, animated: Bool) {
-        guard let navigationController = self.navigationController else {
-            NSLog("Trying to push \(viewController) without a navigation controller")
+    public func push<T: MaestroViewController>(viewController: T, animated: Bool = true) {
+        guard let navigationController = self.navigationController ?? parent?.navigationController else {
+            NSLog("Trying to push \(viewController) without a navigation controller (whether it's local or parent's)")
             return
         }
 
@@ -118,17 +121,24 @@ extension MaestroCoordinatorProtocol {
     }
 }
 
-
 // MARK: - Coordinators navigation
 
 extension MaestroCoordinatorProtocol {
 
-    private func ensureParenthood<T: MaestroCoordinatorProtocol>(coordinator: T) {
+    private func ensureParenthood<T: MaestroCoordinatorProtocol>(with coordinator: T) {
         // Ensure parenthood is not lost between coordinators
         coordinator.parent = self
 
         if !children.contains(where: { $0 === coordinator }) {
             children.append(coordinator)
         }
+    }
+
+    public func navigate<T: MaestroCoordinatorProtocol>(to coordinator: T) {
+        // Make sure parenthood is kept during navigation
+        ensureParenthood(with: coordinator)
+
+        // Start orchestration from child coordinator
+        coordinator.orchestrate()
     }
 }

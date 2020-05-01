@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		EDA48A8424586059007F81B2 /* SplashscreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA48A8324586059007F81B2 /* SplashscreenViewController.swift */; };
 		EDA48A862458615F007F81B2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA48A852458615F007F81B2 /* DashboardViewController.swift */; };
+		EDAA6097245C0BF100B1DC6D /* UsersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAA6096245C0BF100B1DC6D /* UsersCoordinator.swift */; };
+		EDAA6099245C0C2200B1DC6D /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAA6098245C0C2200B1DC6D /* UsersListViewController.swift */; };
+		EDAA609B245C0C7A00B1DC6D /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAA609A245C0C7A00B1DC6D /* UserDetailsViewController.swift */; };
 		EDE87F1124585D1D00C93DA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE87F1024585D1D00C93DA9 /* AppDelegate.swift */; };
 		EDE87F1A24585D1E00C93DA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE87F1924585D1E00C93DA9 /* Assets.xcassets */; };
 		EDE87F1D24585D1E00C93DA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE87F1B24585D1E00C93DA9 /* LaunchScreen.storyboard */; };
@@ -34,6 +37,9 @@
 /* Begin PBXFileReference section */
 		EDA48A8324586059007F81B2 /* SplashscreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenViewController.swift; sourceTree = "<group>"; };
 		EDA48A852458615F007F81B2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		EDAA6096245C0BF100B1DC6D /* UsersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoordinator.swift; sourceTree = "<group>"; };
+		EDAA6098245C0C2200B1DC6D /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
+		EDAA609A245C0C7A00B1DC6D /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		EDE87F0D24585D1D00C93DA9 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Sample.app; path = Maestro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE87F1024585D1D00C93DA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE87F1924585D1E00C93DA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EDAA6095245C0BD600B1DC6D /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				EDAA6098245C0C2200B1DC6D /* UsersListViewController.swift */,
+				EDAA609A245C0C7A00B1DC6D /* UserDetailsViewController.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
 		EDE87F0424585D1D00C93DA9 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +121,7 @@
 				EDA48A852458615F007F81B2 /* DashboardViewController.swift */,
 				EDE87F1B24585D1E00C93DA9 /* LaunchScreen.storyboard */,
 				EDA48A8324586059007F81B2 /* SplashscreenViewController.swift */,
+				EDAA6095245C0BD600B1DC6D /* Users */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EDE87F3324585F8700C93DA9 /* RootCoordinator.swift */,
+				EDAA6096245C0BF100B1DC6D /* UsersCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -199,8 +216,11 @@
 			files = (
 				EDE87F3424585F8700C93DA9 /* RootCoordinator.swift in Sources */,
 				EDA48A862458615F007F81B2 /* DashboardViewController.swift in Sources */,
+				EDAA6097245C0BF100B1DC6D /* UsersCoordinator.swift in Sources */,
 				EDA48A8424586059007F81B2 /* SplashscreenViewController.swift in Sources */,
+				EDAA609B245C0C7A00B1DC6D /* UserDetailsViewController.swift in Sources */,
 				EDE87F1124585D1D00C93DA9 /* AppDelegate.swift in Sources */,
+				EDAA6099245C0C2200B1DC6D /* UsersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

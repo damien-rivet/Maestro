@@ -25,6 +25,14 @@ final class RootCoordinator: MaestroCoordinator {
 
         present(viewController: alertController)
     }
+
+    func navigateToUsersList() {
+        navigate(to: UsersCoordinator())
+    }
+
+    func navigateToPresentedUsersList() {
+        
+    }
 }
 
 class RootViewController: UIViewController, MaestroViewController {

@@ -41,7 +41,7 @@ final class DashboardViewController: RootViewController {
 extension DashboardViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,6 +49,7 @@ extension DashboardViewController: UITableViewDataSource {
 
         switch indexPath.row {
             case 0: cell.textLabel?.text = "Alert"
+            case 1: cell.textLabel?.text = "Users list (pushed, same NC)"
 
             default: NSLog("Do nothing")
         }
@@ -66,6 +67,7 @@ extension DashboardViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
             case 0: coordinator?.presentPingAlert()
+            case 1: coordinator?.navigateToUsersList()
 
             default: NSLog("Do nothing")
         }
