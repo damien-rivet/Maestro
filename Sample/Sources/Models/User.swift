@@ -13,4 +13,6 @@ struct User {
     var fullName: String {
         "\(firstName) \(lastName)"
     }
+
+    let contacts: [User]
 }

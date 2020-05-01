@@ -5,13 +5,15 @@
 
 import UIKit
 
-open class MaestroCoordinator: MaestroCoordinatorProtocol {
+open class MaestroCoordinator: NSObject, MaestroCoordinatorProtocol {
 
     // MARK: - Properties
 
     public var window: UIWindow?
 
     public var navigationController: UINavigationController?
+
+    public var presentingNavigationController: UINavigationController?
 
     public weak var parent: MaestroCoordinatorProtocol?
 
@@ -29,4 +31,8 @@ open class MaestroCoordinator: MaestroCoordinatorProtocol {
     open func orchestrate() {
         fatalError("Orchestration must not be started from abstract coordinator.")
     }
+}
+
+extension MaestroCoordinator: UINavigationControllerDelegate {
+
 }

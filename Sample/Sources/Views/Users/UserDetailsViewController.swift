@@ -10,6 +10,7 @@ final class UserDetailsViewController: UsersViewController {
     // MARK: - Properties
 
     let viewModel: UserDetailsViewModel
+    let button = UIButton(type: .custom)
 
     // MARK: - Initialization
 
@@ -31,5 +32,23 @@ final class UserDetailsViewController: UsersViewController {
         view.backgroundColor = .purple
 
         title = viewModel.user.fullName
+
+        button.setTitle("Contact information", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(displayUserContactInformation), for: .touchUpInside)
+        view.addSubview(button)
+
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            button.heightAnchor.constraint(equalToConstant: 32),
+            button.widthAnchor.constraint(equalToConstant: 320)
+        ])
+    }
+
+    @objc
+    func displayUserContactInformation() {
+        coordinator?.presentUserContactInformation(for: viewModel.user)
     }
 }

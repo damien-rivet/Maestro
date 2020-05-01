@@ -41,7 +41,7 @@ final class DashboardViewController: RootViewController {
 extension DashboardViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,10 +49,11 @@ extension DashboardViewController: UITableViewDataSource {
 
         switch indexPath.row {
             case 0: cell.textLabel?.text = "Alert"
-            case 1: cell.textLabel?.text = "Users list (pushed, same NC)"
-            case 2: cell.textLabel?.text = "Users list (presented, no NC)"
-            case 3: cell.textLabel?.text = "Users list (presented, default NC)"
-            case 4: cell.textLabel?.text = "Users list (presented, custom NC)"
+            case 1: cell.textLabel?.text = "Action sheet"
+            case 2: cell.textLabel?.text = "Users list (pushed, same NC)"
+            case 3: cell.textLabel?.text = "Users list (presented, no NC)"
+            case 4: cell.textLabel?.text = "Users list (presented, default NC)"
+            case 5: cell.textLabel?.text = "Users list (presented, custom NC)"
 
             default: NSLog("Do nothing")
         }
@@ -70,10 +71,11 @@ extension DashboardViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
             case 0: coordinator?.presentPingAlert()
-            case 1: coordinator?.navigateToUsersList()
-            case 2: coordinator?.navigateToPresentedUsersList()
-            case 3: coordinator?.navigateToPresentedDefaultUsersList()
-            case 4: coordinator?.navigateToPresentedCustomUsersList()
+            case 1: coordinator?.presentActionSheet()
+            case 2: coordinator?.navigateToUsersList()
+            case 3: coordinator?.navigateToPresentedUsersList()
+            case 4: coordinator?.navigateToPresentedDefaultUsersList()
+            case 5: coordinator?.navigateToPresentedCustomUsersList()
 
             default: NSLog("Do nothing")
         }

@@ -17,6 +17,10 @@ class UsersCoordinator: MaestroCoordinator {
     func navigateToUserDetails(user: User) {
         push(viewController: UserDetailsViewController(UserDetailsViewModel(user: user)))
     }
+
+    func presentUserContactInformation(for user: User) {
+        present(viewController: UserContactInformationViewController(user: user), useNestedNavigationController: true)
+    }
 }
 
 class PresentedUsersCoordinator: UsersCoordinator {

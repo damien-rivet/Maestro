@@ -80,8 +80,24 @@ extension MaestroCoordinatorProtocol {
     }
 
     public func push<T: MaestroViewController>(viewController: T, animated: Bool = true) {
-        guard let navigationController = self.navigationController ?? parent?.navigationController else {
-            NSLog("Trying to push \(viewController) without a navigation controller (whether it's local or parent's)")
+        var nestedNavigationController: UINavigationController?
+
+        if presentingNavigationController == nil {
+            // Current coordinator isn't presented, use custom navigation controller OR parent's
+            nestedNavigationController = self.navigationController ?? parent?.navigationController
+
+            NSLog("Coordinator is not presented, using default navigation cotnroller or parent's navigation controller")
+        } else if presentingNavigationController != nil, self.navigationController != nil {
+            // Coordinator is nested, use only the current navigation controller if it is present
+            nestedNavigationController = self.navigationController
+
+            NSLog("Coordinator is presented, using default navigation controller, not parent's")
+        } else {
+            nestedNavigationController = parent?.navigationController
+        }
+
+        guard let navigationController = nestedNavigationController else {
+            NSLog("Trying to push \(viewController) without a navigation controller")
             return
         }
 
@@ -99,8 +115,8 @@ extension MaestroCoordinatorProtocol {
         NSLog("Pushing \(viewController) ontop of the stack of navigation controller \(navigationController)")
     }
 
-    public func present<T: MaestroViewController>(viewController: T, useNestedNavigationController: Bool = false, nestedNavigationController: UINavigationController? = UINavigationController(), animated: Bool = true, completion: (() -> Void)? = nil) {
-        guard let presentingNavigationController = parent?.navigationController ?? self.navigationController else {
+    public func present<T: MaestroViewController>(viewController: T, useNestedNavigationController: Bool = false, nestedNavigationController: UINavigationController? = nil, animated: Bool = true, completion: (() -> Void)? = nil) {
+        guard let presentingNavigationController = self.navigationController ?? parent?.navigationController else {
             NSLog("Trying to present \(viewController) without a navigation controller")
             return
         }
@@ -120,14 +136,10 @@ extension MaestroCoordinatorProtocol {
                 // Nested navigation controller become the new navigation controller for future navigation events
                 self.navigationController = nestedNavigationController
             } else {
-                // Use a dummy navigation controller to prevent uneeded reuse of the parent's navigation controller
-                let dummyNavigationController = UINavigationController(rootViewController: viewController)
-
-                viewControllerToPresent = dummyNavigationController
-
-                self.navigationController = dummyNavigationController
-                self.navigationController?.setNavigationBarHidden(true, animated: false)
+                viewControllerToPresent = UINavigationController(rootViewController: viewController)
             }
+
+            self.presentingNavigationController = presentingNavigationController
         } else {
             viewControllerToPresent = viewController
         }
@@ -139,9 +151,8 @@ extension MaestroCoordinatorProtocol {
 
         presentingNavigationController.present(viewControllerToPresent, animated: animated, completion: completion)
 
-        self.presentingNavigationController = presentingNavigationController
 
-        NSLog("Presenting \(viewController) ontop of the current view controller of navigation controller \(navigationController)")
+        NSLog("Presenting \(viewController) ontop of the current view controller of navigation controller \(presentingNavigationController)")
     }
 }
 

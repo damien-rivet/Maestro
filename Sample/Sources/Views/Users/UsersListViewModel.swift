@@ -8,7 +8,7 @@ struct UsersListViewModel {
     // MARK: - Properties
 
     let users = [
-        User(firstName: "John", lastName: "Doe"),
-        User(firstName: "Jane", lastName: "Doe")
+        User(firstName: "John", lastName: "Doe", contacts: [User(firstName: "Jayne", lastName: "Dough", contacts: [])]),
+        User(firstName: "Jane", lastName: "Doe", contacts: [User(firstName: "June", lastName: "Dough", contacts: [])])
     ]
 }

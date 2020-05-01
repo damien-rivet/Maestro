@@ -26,6 +26,14 @@ class RootCoordinator: MaestroCoordinator {
         present(viewController: alertController)
     }
 
+    func presentActionSheet() {
+        let alertController = RootAlertController(title: "Ping?", message: "Would you like to pong back?", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Pong", style: .destructive, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(viewController: alertController)
+    }
+
     func navigateToUsersList() {
         navigate(to: UsersCoordinator())
     }
