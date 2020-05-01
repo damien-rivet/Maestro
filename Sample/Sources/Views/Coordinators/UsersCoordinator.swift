@@ -6,12 +6,43 @@
 import UIKit
 import Maestro
 
-final class UsersCoordinator: MaestroCoordinator {
+class UsersCoordinator: MaestroCoordinator {
 
     // MARK: - Functions
 
     override func orchestrate() {
         push(viewController: UsersListViewController())
+    }
+
+    func navigateToUserDetails(user: User) {
+        push(viewController: UserDetailsViewController(UserDetailsViewModel(user: user)))
+    }
+}
+
+class PresentedUsersCoordinator: UsersCoordinator {
+
+    // MARK: - Functions
+
+    override func orchestrate() {
+        present(viewController: UsersListViewController())
+    }
+}
+
+class PresentedDefaultUsersCoordinator: UsersCoordinator {
+
+    // MARK: - Functions
+
+    override func orchestrate() {
+        present(viewController: UsersListViewController(), useNestedNavigationController: true)
+    }
+}
+
+class PresentedCustomUsersCoordinator: UsersCoordinator {
+
+    // MARK: - Functions
+
+    override func orchestrate() {
+        present(viewController: UsersListViewController(), useNestedNavigationController: true, nestedNavigationController: UsersNavigationController())
     }
 }
 

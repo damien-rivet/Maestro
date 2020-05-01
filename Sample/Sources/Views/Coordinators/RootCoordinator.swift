@@ -6,7 +6,7 @@
 import UIKit
 import Maestro
 
-final class RootCoordinator: MaestroCoordinator {
+class RootCoordinator: MaestroCoordinator {
 
     // MARK: - Functions
 
@@ -31,7 +31,15 @@ final class RootCoordinator: MaestroCoordinator {
     }
 
     func navigateToPresentedUsersList() {
-        
+        navigate(to: PresentedUsersCoordinator())
+    }
+
+    func navigateToPresentedDefaultUsersList() {
+        navigate(to: PresentedDefaultUsersCoordinator())
+    }
+
+    func navigateToPresentedCustomUsersList() {
+        navigate(to: PresentedCustomUsersCoordinator())
     }
 }
 

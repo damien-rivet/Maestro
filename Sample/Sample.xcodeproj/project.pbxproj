@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED0A2FA6245C1D3D00C7C7B9 /* UsersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0A2FA5245C1D3D00C7C7B9 /* UsersNavigationController.swift */; };
+		ED0A2FA8245C1FFE00C7C7B9 /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0A2FA7245C1FFE00C7C7B9 /* UserDetailsViewModel.swift */; };
+		ED0A2FAB245C201C00C7C7B9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0A2FAA245C201C00C7C7B9 /* User.swift */; };
+		ED0A2FAD245C20A000C7C7B9 /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0A2FAC245C20A000C7C7B9 /* UsersListViewModel.swift */; };
 		EDA48A8424586059007F81B2 /* SplashscreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA48A8324586059007F81B2 /* SplashscreenViewController.swift */; };
 		EDA48A862458615F007F81B2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA48A852458615F007F81B2 /* DashboardViewController.swift */; };
 		EDAA6097245C0BF100B1DC6D /* UsersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAA6096245C0BF100B1DC6D /* UsersCoordinator.swift */; };
@@ -35,6 +39,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ED0A2FA5245C1D3D00C7C7B9 /* UsersNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersNavigationController.swift; sourceTree = "<group>"; };
+		ED0A2FA7245C1FFE00C7C7B9 /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
+		ED0A2FAA245C201C00C7C7B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ED0A2FAC245C20A000C7C7B9 /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		EDA48A8324586059007F81B2 /* SplashscreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenViewController.swift; sourceTree = "<group>"; };
 		EDA48A852458615F007F81B2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		EDAA6096245C0BF100B1DC6D /* UsersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoordinator.swift; sourceTree = "<group>"; };
@@ -61,11 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED0A2FA9245C201200C7C7B9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED0A2FAA245C201C00C7C7B9 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EDAA6095245C0BD600B1DC6D /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				EDAA6098245C0C2200B1DC6D /* UsersListViewController.swift */,
 				EDAA609A245C0C7A00B1DC6D /* UserDetailsViewController.swift */,
+				ED0A2FA7245C1FFE00C7C7B9 /* UserDetailsViewModel.swift */,
+				EDAA6098245C0C2200B1DC6D /* UsersListViewController.swift */,
+				ED0A2FAC245C20A000C7C7B9 /* UsersListViewModel.swift */,
+				ED0A2FA5245C1D3D00C7C7B9 /* UsersNavigationController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -91,6 +110,7 @@
 		EDE87F0F24585D1D00C93DA9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				ED0A2FA9245C201200C7C7B9 /* Models */,
 				EDE87F1024585D1D00C93DA9 /* AppDelegate.swift */,
 				EDE87F3124585E2600C93DA9 /* Resources */,
 				EDE87F3024585E0C00C93DA9 /* Views */,
@@ -214,12 +234,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED0A2FA6245C1D3D00C7C7B9 /* UsersNavigationController.swift in Sources */,
 				EDE87F3424585F8700C93DA9 /* RootCoordinator.swift in Sources */,
+				ED0A2FA8245C1FFE00C7C7B9 /* UserDetailsViewModel.swift in Sources */,
 				EDA48A862458615F007F81B2 /* DashboardViewController.swift in Sources */,
 				EDAA6097245C0BF100B1DC6D /* UsersCoordinator.swift in Sources */,
 				EDA48A8424586059007F81B2 /* SplashscreenViewController.swift in Sources */,
 				EDAA609B245C0C7A00B1DC6D /* UserDetailsViewController.swift in Sources */,
 				EDE87F1124585D1D00C93DA9 /* AppDelegate.swift in Sources */,
+				ED0A2FAD245C20A000C7C7B9 /* UsersListViewModel.swift in Sources */,
+				ED0A2FAB245C201C00C7C7B9 /* User.swift in Sources */,
 				EDAA6099245C0C2200B1DC6D /* UsersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

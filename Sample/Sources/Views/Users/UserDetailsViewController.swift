@@ -7,6 +7,22 @@ import UIKit
 
 final class UserDetailsViewController: UsersViewController {
 
+    // MARK: - Properties
+
+    let viewModel: UserDetailsViewModel
+
+    // MARK: - Initialization
+
+    init(_ viewModel: UserDetailsViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Functions
 
     override func viewDidLoad() {
@@ -14,6 +30,6 @@ final class UserDetailsViewController: UsersViewController {
 
         view.backgroundColor = .purple
 
-        title = "User details"
+        title = viewModel.user.fullName
     }
 }
