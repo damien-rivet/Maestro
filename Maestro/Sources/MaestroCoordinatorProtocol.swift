@@ -9,7 +9,7 @@ public protocol MaestroCoordinatorProtocol: class {
 
     // MARK: - Properties
 
-    /// Returns the window used by this instane of `MaestroCoordinator`.
+    /// Returns the window used by this instance of `MaestroCoordinator`.
     var window: UIWindow? { get }
 
     /// Returns the navigation controller used by this instance of `MaestroCoordinator`.

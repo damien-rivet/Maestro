@@ -113,8 +113,8 @@
 		EDE87F0F24585D1D00C93DA9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				ED0A2FA9245C201200C7C7B9 /* Models */,
 				EDE87F1024585D1D00C93DA9 /* AppDelegate.swift */,
+				ED0A2FA9245C201200C7C7B9 /* Models */,
 				EDE87F3124585E2600C93DA9 /* Resources */,
 				EDE87F3024585E0C00C93DA9 /* Views */,
 			);

@@ -1,84 +1,75 @@
-# Contributor Covenant Code of Conduct
+# Contributing
 
-## Our Pledge
+## Summary
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+- [Setup](#setup)
+- [Branching Model](#branching-model)
+  - [Master](#master)
+  - [Develop](#develop)
+  - [Patterns](#patterns)
+- [Commits](#commits)
+- [Unit testing](#unit-testing)
+- [Linting](#linting)
 
-We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+## Setup
 
-## Our Standards
+To get started on contributing on `Maestro` you'll need to perform those steps:
 
-Examples of behavior that contributes to a positive environment for our community include:
+1. Download and install the latest stable version of **Xcode**
+1. Clone the repository from `GitHub`
+1. Open `Maestro.xcworkspace` with **Xcode** (do not drag & drop the folder as it will open it as a Swift Package)
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the overall community
+We recommend the usage of the following useful tools:
 
-Examples of unacceptable behavior include:
+- [Visual Studio Code](https://code.visualstudio.com)
+- [SwiftLint](https://github.com/realm/SwiftLint)
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+## Branching model
 
-## Enforcement Responsibilities
+The current branching model of `Maestro` is built upon [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model) from [Vincent Driessen](http://nvie.com).
 
-Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.
+Every single change that targets the main branches (master, develop) can only be merged through a pull request.
 
-Community leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.
+### Master
 
-## Scope
+This very peculiar branch is used only for hosting the releases of `Maestro`.
 
-This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
+Apart from the code coming from the release branches, it is allowed to create pull request to merge hotfixes and documentation fixes.
 
-## Enforcement
+To perform a new release, a branch (named like **release/release-x.x.x**) must be created from the **develop** branch. Once all the preparatory work is done, a pull request (named like **Release x.x.x**) must be created with **master** as the target.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement (eg. main contributor). All complaints will be reviewed and investigated promptly and fairlyx
+Once everything is settled on the pull request (version bump, up-to-date documentation, hotfixes, etc.) it will be merged into **master**. Right after, a new tag (named like **x.x.x**) will be associated with the merge commit.
 
-All community leaders are obligated to respect the privacy and security of the reporter of any incident.
+### Develop
 
-## Enforcement Guidelines
+This branch can be considered as the main working branch, every change toward the next release is staged here until the next release branch is created.
 
-Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
+You're free to rebase on develop whenever you need to get the latest change in your branch.
 
-### 1. Correction
+### Patterns
 
-**Community Impact**: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.
+All branches inside the `Maestro` repository needs to follow one of the pattern below:
 
-**Consequence**: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
+- feature/{branch_name}
+- bug/{branch_name}
+- release/{branch_name}
+- hotfix/{branch_name}
 
-### 2. Warning
+Pull requests coming from branches which are not matching any of those pattern will be declined.
 
-**Community Impact**: A violation through a single incident or series of actions.
+## Commits
 
-**Consequence**: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.
+Before commiting anything to you branch, make sure to add relevant message and description to your commit.
 
-### 3. Temporary Ban
+If you need to some insights on how to actually do this, here's some helpful readings:
 
-**Community Impact**: A serious violation of community standards, including sustained inappropriate behavior.
+- [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit)
+- [What makes a good commit message?](https://hackernoon.com/what-makes-a-good-commit-message-995d23687ad)
 
-**Consequence**: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.
+## Unit testing
 
-### 4. Permanent Ban
+New objects must be committed alongside their unit tests so every breaking changes in the API or missing implementations can be monitored.
 
-**Community Impact**: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior,  harassment of an individual, or aggression toward or disparagement of classes of individuals.
+## Linting
 
-**Consequence**: A permanent ban from any sort of public interaction within the project community.
-
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.0,
-available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
-
-Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcement ladder](https://github.com/mozilla/diversity).
-
-[homepage]: https://www.contributor-covenant.org
-
-For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations.
+Currently, `Maestro` includes the `SwiftLint` script to enforce a general quality of the code.
