@@ -19,7 +19,7 @@ class UsersCoordinator: MaestroCoordinator {
     }
 
     func presentUserContactInformation(for user: User) {
-        present(viewController: UserContactInformationViewController(user: user), useNestedNavigationController: true)
+        present(viewController: UserContactInformationViewController(user: user))
     }
 }
 
@@ -28,7 +28,7 @@ class PresentedUsersCoordinator: UsersCoordinator {
     // MARK: - Functions
 
     override func orchestrate() {
-        present(viewController: UsersListViewController())
+        present(viewController: UsersListViewController(), useNestedNavigationController: false)
     }
 }
 
@@ -37,7 +37,7 @@ class PresentedDefaultUsersCoordinator: UsersCoordinator {
     // MARK: - Functions
 
     override func orchestrate() {
-        present(viewController: UsersListViewController(), useNestedNavigationController: true)
+        present(viewController: UsersListViewController())
     }
 }
 
@@ -46,7 +46,7 @@ class PresentedCustomUsersCoordinator: UsersCoordinator {
     // MARK: - Functions
 
     override func orchestrate() {
-        present(viewController: UsersListViewController(), useNestedNavigationController: true, nestedNavigationController: UsersNavigationController())
+        present(viewController: UsersListViewController(), nestedNavigationController: UsersNavigationController())
     }
 }
 

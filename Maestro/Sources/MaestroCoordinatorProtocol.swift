@@ -36,8 +36,14 @@ public protocol MaestroCoordinatorProtocol: class {
     /// Set the supplied view controller as the root view controller.
     func set<T: MaestroViewController>(viewController: T, embeddedNavigationController: UINavigationController?)
 
+    // Default push without coordination
+    func push(viewController: UIViewController, animated: Bool)
+
     /// Push the supplied view controller to the navigation controller's stack.
     func push<T: MaestroViewController>(viewController: T, animated: Bool)
+
+    // Default presentation without coordination
+    func present(viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
 
     /// Present the supplied view controller above the current view controller through the navigation controller.
     func present<T: MaestroViewController>(viewController: T, useNestedNavigationController: Bool, nestedNavigationController: UINavigationController?, animated: Bool, completion: (() -> Void)?)
@@ -79,6 +85,10 @@ extension MaestroCoordinatorProtocol {
         }
     }
 
+    public func push(viewController: UIViewController, animated: Bool) {
+        navigationController?.pushViewController(viewController, animated: animated)
+    }
+
     public func push<T: MaestroViewController>(viewController: T, animated: Bool = true) {
         var nestedNavigationController: UINavigationController?
 
@@ -112,7 +122,11 @@ extension MaestroCoordinatorProtocol {
         NSLog("Pushing \(viewController) ontop of the stack of navigation controller \(navigationController)")
     }
 
-    public func present<T: MaestroViewController>(viewController: T, useNestedNavigationController: Bool = false, nestedNavigationController: UINavigationController? = nil, animated: Bool = true, completion: (() -> Void)? = nil) {
+    public func present(viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        navigationController?.present(viewController, animated: animated, completion: completion)
+    }
+
+    public func present<T: MaestroViewController>(viewController: T, useNestedNavigationController: Bool = true, nestedNavigationController: UINavigationController? = nil, animated: Bool = true, completion: (() -> Void)? = nil) {
         guard let presentingNavigationController = self.navigationController ?? parent?.navigationController else {
             NSLog("Trying to present \(viewController) without a navigation controller")
             return

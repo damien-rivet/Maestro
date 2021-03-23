@@ -19,19 +19,19 @@ class RootCoordinator: MaestroCoordinator {
     }
 
     func presentPingAlert() {
-        let alertController = RootAlertController(title: "Ping?", message: "Would you like to pong back?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Ping?", message: "Would you like to pong back?", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Pong", style: .destructive, handler: nil))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
-        present(viewController: alertController)
+        present(viewController: alertController, animated: true, completion: nil)
     }
 
     func presentActionSheet() {
-        let alertController = RootAlertController(title: "Ping?", message: "Would you like to pong back?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Ping?", message: "Would you like to pong back?", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Pong", style: .destructive, handler: nil))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
-        present(viewController: alertController)
+        present(viewController: alertController, animated: true, completion: nil)
     }
 
     func navigateToUsersList() {
@@ -52,17 +52,6 @@ class RootCoordinator: MaestroCoordinator {
 }
 
 class RootViewController: UIViewController, MaestroViewController {
-
-    // MARK: - Constants
-
-    typealias Coordinator = RootCoordinator
-
-    // MARK: - Properties
-
-    var coordinator: Coordinator?
-}
-
-class RootAlertController: UIAlertController, MaestroViewController {
 
     // MARK: - Constants
 
