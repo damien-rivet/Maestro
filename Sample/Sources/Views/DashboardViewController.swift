@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class DashboardViewController: RootViewController {
 
@@ -16,6 +17,11 @@ final class DashboardViewController: RootViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
+        setupLayout()
+    }
+
+    func setupViews() {
         view.backgroundColor = .groupTableViewBackground
 
         title = "Dashboard"
@@ -25,14 +31,13 @@ final class DashboardViewController: RootViewController {
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
+    }
 
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        ])
+    func setupLayout() {
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.bottom.leading.equalToSuperview()
+        }
     }
 }
 

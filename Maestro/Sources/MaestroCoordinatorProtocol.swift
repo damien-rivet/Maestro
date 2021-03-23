@@ -165,8 +165,7 @@ extension MaestroCoordinatorProtocol {
 
         presentingNavigationController.present(viewControllerToPresent, animated: animated, completion: completion)
 
-
-        NSLog("Presenting \(viewController) ontop of the current view controller of navigation controller \(presentingNavigationController)")
+        NSLog("Presenting \(viewController) above the current view controller of navigation controller \(presentingNavigationController)")
     }
 }
 

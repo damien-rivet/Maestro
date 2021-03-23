@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class UserDetailsViewController: UsersViewController {
 
@@ -29,6 +30,11 @@ final class UserDetailsViewController: UsersViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
+        setupLayout()
+    }
+
+    func setupViews() {
         view.backgroundColor = .purple
 
         title = viewModel.user.fullName
@@ -38,13 +44,14 @@ final class UserDetailsViewController: UsersViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(displayUserContactInformation), for: .touchUpInside)
         view.addSubview(button)
+    }
 
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            button.heightAnchor.constraint(equalToConstant: 32),
-            button.widthAnchor.constraint(equalToConstant: 320)
-        ])
+    func setupLayout() {
+        button.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.equalTo(32)
+            make.width.equalTo(320)
+        }
     }
 
     @objc
