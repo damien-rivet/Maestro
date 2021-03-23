@@ -87,13 +87,11 @@ extension MaestroCoordinatorProtocol {
             nestedNavigationController = self.navigationController ?? parent?.navigationController
 
             NSLog("Coordinator is not presented, using default navigation cotnroller or parent's navigation controller")
-        } else if presentingNavigationController != nil, self.navigationController != nil {
+        } else if presentingNavigationController != nil, navigationController != nil {
             // Coordinator is nested, use only the current navigation controller if it is present
-            nestedNavigationController = self.navigationController
+            nestedNavigationController = navigationController
 
             NSLog("Coordinator is presented, using default navigation controller, not parent's")
-        } else {
-            nestedNavigationController = parent?.navigationController
         }
 
         guard let navigationController = nestedNavigationController else {
@@ -101,7 +99,6 @@ extension MaestroCoordinatorProtocol {
             return
         }
 
-        // TODO: Take into account PUSH happening in presented view controller
         guard navigationController.presentedViewController == nil else {
             NSLog("Trying to push \(viewController) while navigation controller is presenting")
             return
@@ -127,17 +124,20 @@ extension MaestroCoordinatorProtocol {
         var viewControllerToPresent: UIViewController
 
         if useNestedNavigationController {
+            var finalNestedNavigationController: UINavigationController
             // Should the presented view controller be nested within a navigation controller?
             if let nestedNavigationController = nestedNavigationController {
-                // Set view controller as the root view controller of the navigation
-                nestedNavigationController.setViewControllers([viewController], animated: false)
-                viewControllerToPresent = nestedNavigationController
-
-                // Nested navigation controller become the new navigation controller for future navigation events
-                self.navigationController = nestedNavigationController
+                finalNestedNavigationController = nestedNavigationController
             } else {
-                viewControllerToPresent = UINavigationController(rootViewController: viewController)
+                finalNestedNavigationController = UINavigationController()
             }
+
+            // Set view controller as the root view controller of the navigation
+            finalNestedNavigationController.setViewControllers([viewController], animated: false)
+            viewControllerToPresent = finalNestedNavigationController
+
+            // Nested navigation controller become the new navigation controller for future navigation events
+            self.navigationController = finalNestedNavigationController
 
             self.presentingNavigationController = presentingNavigationController
         } else {
